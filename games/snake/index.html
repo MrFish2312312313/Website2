@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon Snake — PIXEL ARCADE</title>
+  <link rel="icon" href="../../favicon.svg">
+  <link rel="stylesheet" href="../../shared/retro.css">
+</head>
+<body class="crt game-page">
+  <header class="game-bar">
+    <a class="btn" href="../../index.html#noboot">&#9664; Arcade</a>
+    <h1>NEON SNAKE</h1>
+    <div class="stats">
+      <span>SCORE <b id="score">000000</b></span>
+      <span>LVL <b id="level">1</b></span>
+      <span>HI <b id="high">000000</b></span>
+    </div>
+  </header>
+
+  <div class="stage">
+    <canvas id="game" width="480" height="480"></canvas>
+    <div class="overlay" id="overlay">
+      <h2 id="ov-title">NEON SNAKE</h2>
+      <p id="ov-text">Eat the pink pellets. Don't bite yourself.</p>
+      <button class="btn" id="ov-btn">START</button>
+      <p class="blink" style="font-size:16px;color:var(--cyan)">OR PRESS SPACE</p>
+    </div>
+  </div>
+
+  <p class="help">
+    <kbd>&larr;</kbd><kbd>&uarr;</kbd><kbd>&darr;</kbd><kbd>&rarr;</kbd> or <kbd>WASD</kbd> to steer &middot;
+    <kbd>P</kbd> pause &middot; swipe on mobile<br>
+    Power-ups: <span style="color:#ffe600">GOLD</span> = +50 &middot;
+    <span style="color:#00f0ff">ICE</span> = slow time &middot;
+    <span style="color:#9d4dff">GHOST</span> = pass through walls &amp; blocks.
+    Every 5 pellets the level goes up: faster snake, more blocks.
+  </p>
+
+  <script src="../../shared/retro.js"></script>
+  <script src="snake.js"></script>
+</body>
+</html>

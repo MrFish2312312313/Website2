@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life Lab — PIXEL ARCADE</title>
+  <link rel="icon" href="../../favicon.svg">
+  <link rel="stylesheet" href="../../shared/retro.css">
+  <style>
+    #game { cursor: pointer; touch-action: none; }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 14px;
+      padding: 0 12px;
+    }
+    .controls .btn { font-size: 9px; padding: 8px 10px; }
+    .controls label { font-family: var(--pixel); font-size: 9px; color: var(--cyan); display: flex; gap: 8px; align-items: center; }
+    .controls input[type=range] { accent-color: var(--cyan); }
+    select {
+      font-family: var(--pixel);
+      font-size: 9px;
+      background: #05020c;
+      color: var(--green);
+      border: 3px solid var(--green);
+      padding: 7px;
+    }
+  </style>
+</head>
+<body class="crt game-page">
+  <header class="game-bar">
+    <a class="btn" href="../../index.html#noboot">&#9664; Arcade</a>
+    <h1>LIFE LAB</h1>
+    <div class="stats">
+      <span>GEN <b id="gen">0</b></span>
+      <span>ALIVE <b id="alive">0</b></span>
+    </div>
+  </header>
+
+  <div class="stage">
+    <canvas id="game" width="640" height="400"></canvas>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="play">PAUSE</button>
+    <button class="btn" id="step">STEP</button>
+    <button class="btn" id="random">RANDOM</button>
+    <button class="btn" id="clear">CLEAR</button>
+    <select id="pattern" aria-label="Pattern to stamp">
+      <option value="">STAMP: CELL</option>
+      <option value="glider">GLIDER</option>
+      <option value="lwss">SPACESHIP</option>
+      <option value="pulsar">PULSAR</option>
+      <option value="gun">GLIDER GUN</option>
+      <option value="rpent">R-PENTOMINO</option>
+    </select>
+    <label>SPEED <input type="range" id="speed" min="1" max="30" value="12"></label>
+  </div>
+
+  <p class="help">
+    Click / drag to draw cells (or stamp the selected pattern) &middot; <kbd>SPACE</kbd> play/pause &middot;
+    <kbd>N</kbd> step &middot; <kbd>R</kbd> random &middot; <kbd>C</kbd> clear.<br>
+    Rules: a live cell with 2&ndash;3 neighbours survives; an empty cell with exactly 3 is born.
+  </p>
+
+  <script src="../../shared/retro.js"></script>
+  <script src="life.js"></script>
+</body>
+</html>

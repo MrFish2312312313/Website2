@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixel Jumper — PIXEL ARCADE</title>
+  <link rel="icon" href="../../favicon.svg">
+  <link rel="stylesheet" href="../../shared/retro.css">
+  <style>
+    #game { width: 768px; }
+    .touch { display: none; gap: 14px; margin-bottom: 16px; }
+    .touch .btn { font-size: 18px; padding: 16px 22px; user-select: none; -webkit-user-select: none; touch-action: none; }
+    @media (pointer: coarse) { .touch { display: flex; } }
+  </style>
+</head>
+<body class="crt game-page">
+  <header class="game-bar">
+    <a class="btn" href="../../index.html#noboot">&#9664; Arcade</a>
+    <h1>PIXEL JUMPER</h1>
+    <div class="stats">
+      <span>SCORE <b id="score">000000</b></span>
+      <span>&#9679; <b id="coins">0</b></span>
+      <span>&#9829; <b id="lives">3</b></span>
+      <span>WORLD <b id="world">1-1</b></span>
+    </div>
+  </header>
+
+  <div class="stage">
+    <canvas id="game" width="384" height="216"></canvas>
+    <div class="overlay" id="overlay">
+      <h2 id="ov-title">PIXEL JUMPER</h2>
+      <p id="ov-text">Reach the flag. Stomp slimes. Grab coins.</p>
+      <button class="btn" id="ov-btn">START</button>
+      <p class="blink" style="font-size:16px;color:var(--cyan)">OR PRESS SPACE</p>
+    </div>
+  </div>
+
+  <div class="touch">
+    <button class="btn" data-key="left">&#9664;</button>
+    <button class="btn" data-key="right">&#9654;</button>
+    <button class="btn" data-key="jump">JUMP</button>
+  </div>
+
+  <p class="help">
+    <kbd>&larr;</kbd><kbd>&rarr;</kbd> / <kbd>A</kbd><kbd>D</kbd> move &middot;
+    <kbd>SPACE</kbd> / <kbd>&uarr;</kbd> / <kbd>W</kbd> jump (press again in mid-air to double-jump) &middot;
+    <kbd>P</kbd> pause<br>
+    Hold jump to jump higher. Land on slimes to stomp them. Red springs launch you sky-high. Avoid spikes!
+  </p>
+
+  <script src="../../shared/retro.js"></script>
+  <script src="levels.js"></script>
+  <script src="platformer.js"></script>
+</body>
+</html>

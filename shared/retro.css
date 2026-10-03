@@ -1,0 +1,213 @@
+/* ==========================================================
+   PIXEL ARCADE — shared retro styles
+   Used by the hub page and every game page.
+   ========================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
+
+:root {
+  --bg: #0b0618;
+  --bg2: #150a2e;
+  --panel: #1b1038;
+  --pink: #ff2e88;
+  --cyan: #00f0ff;
+  --yellow: #ffe600;
+  --green: #39ff14;
+  --orange: #ff8a00;
+  --purple: #9d4dff;
+  --white: #f4f1ff;
+  --dim: #8a7fb0;
+  --pixel: "Press Start 2P", "Courier New", monospace;
+  --mono: "VT323", "Consolas", monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 20px;
+  image-rendering: pixelated;
+}
+
+a { color: var(--cyan); }
+
+::selection { background: var(--pink); color: var(--bg); }
+
+/* ---------- CRT overlay ---------- */
+.crt::before,
+.crt::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9000;
+}
+.crt::before {
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0px,
+      rgba(0, 0, 0, 0) 2px,
+      rgba(0, 0, 0, 0.22) 3px,
+      rgba(0, 0, 0, 0) 4px
+    );
+  animation: scan-move 8s linear infinite;
+}
+.crt::after {
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,0.65) 100%);
+  animation: flicker 0.15s infinite alternate;
+}
+body.no-crt::before,
+body.no-crt::after { display: none; }
+
+@keyframes scan-move {
+  from { background-position: 0 0; }
+  to   { background-position: 0 100px; }
+}
+@keyframes flicker {
+  from { opacity: 0.92; }
+  to   { opacity: 1; }
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  font-family: var(--pixel);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--white);
+  background: var(--panel);
+  border: 3px solid var(--cyan);
+  padding: 10px 14px;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 4px 4px 0 var(--pink);
+  transition: transform 0.08s, box-shadow 0.08s, background 0.15s, color 0.15s;
+}
+.btn:hover, .btn:focus-visible {
+  background: var(--cyan);
+  color: var(--bg);
+  outline: none;
+}
+.btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--pink);
+}
+.btn.active {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: var(--bg);
+  box-shadow: 4px 4px 0 var(--cyan);
+}
+
+/* ---------- Game page shell ---------- */
+.game-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background:
+    radial-gradient(circle at 50% -20%, #3a1670 0%, transparent 60%),
+    var(--bg);
+}
+
+.game-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 20px;
+  border-bottom: 3px solid var(--pink);
+  background: rgba(21, 10, 46, 0.85);
+  box-shadow: 0 0 24px rgba(255, 46, 136, 0.35);
+  flex-wrap: wrap;
+}
+.game-bar h1 {
+  margin: 0;
+  font-family: var(--pixel);
+  font-size: 16px;
+  color: var(--yellow);
+  text-shadow: 3px 3px 0 var(--pink);
+  animation: title-bob 2s ease-in-out infinite;
+}
+@keyframes title-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.game-bar .stats {
+  font-family: var(--pixel);
+  font-size: 11px;
+  display: flex;
+  gap: 18px;
+  color: var(--cyan);
+}
+.game-bar .stats b { color: var(--white); }
+
+.stage {
+  position: relative;
+  margin: 24px auto 12px;
+  border: 4px solid var(--cyan);
+  box-shadow:
+    0 0 0 4px var(--bg),
+    0 0 0 8px var(--pink),
+    0 0 40px rgba(0, 240, 255, 0.35);
+  background: #000;
+  animation: stage-in 0.5s cubic-bezier(.2,1.6,.4,1) both;
+}
+@keyframes stage-in {
+  from { transform: scale(0.85); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+.stage canvas {
+  display: block;
+  image-rendering: pixelated;
+  max-width: 94vw;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: rgba(11, 6, 24, 0.82);
+  text-align: center;
+  padding: 20px;
+  transition: opacity 0.25s;
+}
+.overlay.hidden { opacity: 0; pointer-events: none; }
+.overlay h2 {
+  font-family: var(--pixel);
+  font-size: 22px;
+  margin: 0;
+  color: var(--pink);
+  text-shadow: 3px 3px 0 var(--cyan);
+}
+.overlay p { margin: 0; color: var(--white); font-size: 22px; }
+.blink { animation: blink 1s steps(2, start) infinite; }
+@keyframes blink { to { visibility: hidden; } }
+
+.help {
+  color: var(--dim);
+  font-size: 20px;
+  text-align: center;
+  max-width: 760px;
+  padding: 0 16px 24px;
+}
+.help kbd {
+  font-family: Consolas, "Segoe UI Symbol", monospace;
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--bg);
+  background: var(--cyan);
+  padding: 3px 6px;
+  border-bottom: 3px solid #009aa6;
+}

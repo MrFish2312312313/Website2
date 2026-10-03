@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PIXEL ARCADE</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="shared/retro.css">
+  <link rel="stylesheet" href="css/hub.css">
+</head>
+<body class="crt hub">
+  <!-- Boot sequence (shown once per session) -->
+  <div id="boot" class="boot" aria-hidden="true">
+    <pre id="boot-text"></pre>
+    <div class="boot-bar"><div id="boot-fill"></div></div>
+    <p class="boot-skip">PRESS ANY KEY</p>
+  </div>
+
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="horizon" aria-hidden="true">
+    <div class="sun"></div>
+    <div class="floor"></div>
+  </div>
+
+  <main class="wrap">
+    <header class="hero">
+      <h1 class="logo" id="logo" data-text="PIXEL ARCADE">PIXEL ARCADE</h1>
+      <p class="tagline"><span id="typer"></span><span class="caret">_</span></p>
+      <p class="coin blink">&#9654; INSERT COIN &#9664;</p>
+    </header>
+
+    <nav class="toolbar" aria-label="Filters">
+      <div class="filters" role="group">
+        <button class="btn active" data-filter="all">All</button>
+        <button class="btn" data-filter="game">Games</button>
+        <button class="btn" data-filter="toy">Toys</button>
+      </div>
+      <input id="search" class="search" type="search" placeholder="SEARCH..." autocomplete="off" aria-label="Search games">
+      <div class="toggles">
+        <button class="btn small" id="toggle-sound" title="Toggle sound">SFX: ON</button>
+        <button class="btn small" id="toggle-crt" title="Toggle CRT effect">CRT: ON</button>
+      </div>
+    </nav>
+
+    <section id="grid" class="grid" aria-live="polite"></section>
+    <p id="empty" class="empty hidden">NO CARTRIDGES FOUND. TRY ANOTHER SEARCH.</p>
+  </main>
+
+  <footer class="ticker" aria-label="High scores">
+    <div class="ticker-track" id="ticker"></div>
+  </footer>
+
+  <div id="wipe" class="wipe" aria-hidden="true"></div>
+
+  <script src="shared/retro.js"></script>
+  <script src="shared/games.js"></script>
+  <script src="js/previews.js"></script>
+  <script src="js/hub.js"></script>
+</body>
+</html>

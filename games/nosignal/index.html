@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NO SIGNAL</title>
+  <link rel="icon" href="../../favicon.svg">
+  <link rel="stylesheet" href="../../shared/retro.css">
+  <link rel="stylesheet" href="nosignal.css">
+</head>
+<body class="ns">
+  <!-- ambient room light cast by the TV -->
+  <div class="room" id="room"></div>
+
+  <a class="ns-back" href="../../index.html#noboot">&#9664; LEAVE</a>
+  <div class="osd-hint" id="hint"></div>
+
+  <main class="tv-wrap" id="tvwrap">
+    <div class="tv" id="tv">
+      <div class="bezel">
+        <div class="glass">
+          <canvas id="screen" width="320" height="240"></canvas>
+          <div class="scan"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="brand">NOCTURNE<small>COLOR TRINITRON</small></div>
+        <div class="tuner" id="tuner" title="Drag or scroll to tune">
+          <div class="scale"><span>VHF</span><span>54</span><span>88</span><span>174</span><span>216</span><span>UHF</span></div>
+          <div class="needle" id="needle"></div>
+        </div>
+        <div class="meter" id="meter" aria-label="signal strength">
+          <i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <div class="knob" id="knob"><div class="tick"></div></div>
+      </div>
+    </div>
+    <p class="ns-help">
+      <kbd>&larr;</kbd><kbd>&rarr;</kbd> / <kbd>A</kbd><kbd>D</kbd> / scroll to tune &middot; hold <kbd>SHIFT</kbd> to fine-tune &middot; <kbd>P</kbd> pause
+    </p>
+    <button class="turn-btn hidden" id="turn">[T] TURN AROUND</button>
+  </main>
+
+  <!-- title -->
+  <section class="ns-screen" id="title">
+    <h1 class="ns-logo" data-text="NO SIGNAL">NO SIGNAL</h1>
+    <p class="ns-sub">3:00 AM. The storm took the cable out.<br>The old TV is the only light in the house.</p>
+    <div class="warn">
+      <b>&#9888; WARNING</b>
+      This game contains jumpscares, loud sounds and flashing images.<br>
+      Play with headphones, in the dark, if you dare.
+    </div>
+    <label class="opt"><input type="checkbox" id="calm"> Reduce flashing</label>
+    <button class="ns-btn" id="start">TURN ON THE TV</button>
+    <p class="ns-best" id="best"></p>
+  </section>
+
+  <!-- end -->
+  <section class="ns-screen hidden" id="end">
+    <h1 class="ns-logo small" id="end-title" data-text="SIGNAL LOST">SIGNAL LOST</h1>
+    <p class="ns-sub" id="end-text"></p>
+    <div class="end-btns">
+      <button class="ns-btn" id="again">TRY AGAIN</button>
+      <a class="ns-btn ghost" href="../../index.html#noboot">BACK TO ARCADE</a>
+    </div>
+  </section>
+
+  <canvas id="scare" class="scare"></canvas>
+
+  <script src="../../shared/retro.js"></script>
+  <script src="nosignal.js"></script>
+</body>
+</html>
